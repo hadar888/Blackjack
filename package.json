@@ -1,0 +1,21 @@
+{
+  "name": "blackjack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^9.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hadar888/Blackjack.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/hadar888/Blackjack"
+  },
+  "homepage": "https://github.com/hadar888/Blackjack#readme"
+}
