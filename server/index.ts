@@ -20,13 +20,14 @@ app.use((_, res, next) => {
     next();
 });
 
-app.get('/api/is-alive', (req, res) => {
+app.get('/api/is-alive', (req, res) => {  // #swagger.tags = ['General']
     res.sendStatus(ServerStatusResponse.OK);
 });
 
 
 // GameService
-app.get('/api/init-game', (req, res) => {  // TODO- add tests
+app.get('/api/init-game', (req, res) => {  // #swagger.tags = ['GameService']
+    // TODO- add tests
     const playersNum = Number(req.query.playersNum);
     if (isNaN(playersNum) || playersNum < MIN_PLAYERS_NUM || playersNum > MAX_PLAYERS_NUM) {
         // TODO- send log
