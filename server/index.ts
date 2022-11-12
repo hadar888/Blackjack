@@ -6,10 +6,13 @@ import {InitGameResponse} from "./GameService/Response/InitGameResponse";
 import {GameResponse} from "./GameService/Response/GameResponse";
 import {ServerStatusResponse, MIN_PLAYERS_NUM, MAX_PLAYERS_NUM} from "./GameService/Utils/Types";
 
-const app = express();
 const PORT = 3000;
+const app = express();
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 app.use(bodyParser.json());
+app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use((_, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', '*');
