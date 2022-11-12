@@ -4,7 +4,7 @@ import { GameManagerController } from "./GameService/GameManager/GameManagerCont
 import {InitGameRequestApi} from "./GameService/ClientApi/InitGameRequestApi";
 import {InitGameResponse} from "./GameService/Response/InitGameResponse";
 import {GameResponse} from "./GameService/Response/GameResponse";
-import {ServerStatusResponse} from "./GameService/Utils/Types";
+import {ServerStatusResponse, MIN_PLAYERS_NUM, MAX_PLAYERS_NUM} from "./GameService/Utils/Types";
 
 const app = express();
 const PORT = 3000;
@@ -18,14 +18,14 @@ app.use((_, res, next) => {
 });
 
 app.get('/api/is-alive', (req, res) => {
-    res.sendStatus(200);
+    res.sendStatus(ServerStatusResponse.OK);
 });
 
 
 // GameService
 app.get('/api/init-game', (req, res) => {  // TODO- add tests
     const playersNum = Number(req.query.playersNum);
-    if (isNaN(playersNum)) {
+    if (isNaN(playersNum) || playersNum < MIN_PLAYERS_NUM || playersNum > MAX_PLAYERS_NUM) {
         // TODO- send log
         return new GameResponse(ServerStatusResponse.BAD_REQUEST);
     }
