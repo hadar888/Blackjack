@@ -5,7 +5,6 @@ import {generateGameId} from "../Utils/Utils";
 
 export class GameManagerProcessor {
     static executeInitGameRequest(initGameRequestApi: InitGameRequest): InitGameResponse {
-        const initGameRequest = new InitGameRequest(initGameRequestApi);
         // TODO- handle initGameRequest in DB
         return new InitGameResponse(generateGameId(), ServerStatusResponse.OK);
     }

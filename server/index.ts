@@ -1,8 +1,6 @@
 import express from 'express';
 import bodyParser = require('body-parser');
 import { GameManagerController } from "./GameService/GameManager/GameManagerController";
-import {InitGameRequestApi} from "./GameService/ClientApi/InitGameRequestApi";
-import {InitGameResponse} from "./GameService/Response/InitGameResponse";
 import {GameResponse} from "./GameService/Response/GameResponse";
 import {ServerStatusResponse, MIN_PLAYERS_NUM, MAX_PLAYERS_NUM} from "./GameService/Utils/Types";
 
@@ -28,14 +26,7 @@ app.get('/api/is-alive', (req, res) => {  // #swagger.tags = ['General']
 // GameService
 app.get('/api/init-game', (req, res) => {  // #swagger.tags = ['GameService']
     // TODO- add tests
-    const playersNum = Number(req.query.playersNum);
-    if (isNaN(playersNum) || playersNum < MIN_PLAYERS_NUM || playersNum > MAX_PLAYERS_NUM) {
-        // TODO- send log
-        return new GameResponse(ServerStatusResponse.BAD_REQUEST);
-    }
-
-    const initGameRequestApi: InitGameRequestApi = new InitGameRequestApi(playersNum);
-    const initGameResponse: InitGameResponse = GameManagerController.executeInitGameRequest(initGameRequestApi);
+    const initGameResponse: GameResponse = GameManagerController.executeInitGameRequest(req.query.playersNum);
     res.send(initGameResponse);
 });
 
