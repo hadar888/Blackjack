@@ -23,7 +23,7 @@ app.get('/api/is-alive', (req, res) => {
 
 
 // GameService
-app.get('/api/init-game', (req, res) => {
+app.get('/api/init-game', (req, res) => {  // TODO- add tests
     const playersNum = Number(req.query.playersNum);
     if (isNaN(playersNum)) {
         // TODO- send log
